@@ -1,4 +1,4 @@
-(defproject tabulam "0.1.0-SNAPSHOT"
+(defproject tabulam "0.1.1-SNAPSHOT"
   :description "Clojure library to access boardgamegeek API"
   :url "https://github.com/zclj/tabulam"
   :license {:name "Eclipse Public License"

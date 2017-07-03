@@ -32,9 +32,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Parsing of XML-api
 (defn- rank->map [rank-loc]
-  (->map (fn [k] (zx/attr rank-loc k))
-         [:type :id :name :friendly-name :value :bayes-average]
-         [:type :id :name :friendlyname :value :bayesaverage]))
+  (into {}
+        (map #(if (= (val %) "Not Ranked") {(key %) -1} %)
+             (->map (fn [k] (zx/attr rank-loc k))
+                    [:type :id :name :friendly-name :value :bayes-average]
+                    [:type :id :name :friendlyname :value :bayesaverage]))))
 
 (defn- values->map [loc out-ks pull-ks]
   (->map (fn [k] (zx/attr (first (zx/xml-> loc k)) :value))
@@ -54,6 +56,7 @@
                [:year-published :minimum-players :max-players :playing-time :minimum-age]
                [:yearpublished :minplayers :maxplayers :playingtime :minage]))
 
+;; TODO return a java.util.Date instead of the lib ref
 (defn- rating->map [rating]
   (merge
    {:date (tf/parse (tf/formatter "yyyyMMdd") (zx/attr rating :date))
@@ -141,3 +144,6 @@
         {:game-data (game->map (conj games game))
          :number-of-pages page
          :time-of-data (clj-time.core/now)}))))
+
+
+
