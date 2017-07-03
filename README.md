@@ -4,11 +4,13 @@ Clojure library to access boardgamegeek API
 
 BoardGameGeek XML API Terms of Use: http://boardgamegeek.com/xmlapi/termsofuse
 
-See http://www.boardgamegeek.com/xmlapi2/thing?id=31260&page=25&historical=1 for an example of the raw XML data received from the API.
+## Changes in 0.2
 
-## Usage
+Since BGG no longer provide their history API 0.2 will be a re-write to reflect that change.
 
-To get an xml-zipper of a specific game and page call `get-game-page` with the thing-id (from boardgamegeek) and the page to retreive.
+## Usage (depricated as of 0.2 note above)
+
+To get an xml-zipper of a specific game and page call `get-game-page` with the thing-id (from boardgamegeek) and the page to retrieve.
 
 ``` clj
 (get-game-page 31260 23)
@@ -28,6 +30,6 @@ To get all pages of historical data for a game use `get-game-history`. This will
 
 ## License
 
-Copyright © 2014 Stefan Karlsson
+Copyright © 2014-2017 Stefan Karlsson
 
 Distributed under the Eclipse Public License
